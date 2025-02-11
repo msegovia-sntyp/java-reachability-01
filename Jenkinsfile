@@ -26,7 +26,7 @@ pipeline {
       steps {
         script {
           nexusPolicyEvaluation(
-            enableDebugLogging: true,
+            enableDebugLogging: false,
             iqStage: 'build',
             iqApplication: 'sandbox-application',
             failBuildOnNetworkError: true,
@@ -36,13 +36,12 @@ pipeline {
             ],
             callflow: [
               enable: true,
-              logLevel: 'DEBUG',
+              logLevel: 'INFO',
               algorithm: 'RTA_PLUS',
               includes: [
                 '**/target/jenkins-examples-callflow-*-dist.zip'
               ],
               java: [
-                // see: https://adoptium.net/temurin/releases/?arch=aarch64
                 tool: 'Java 11',
                 options: [
                   '-Xmx2G'
