@@ -38,7 +38,6 @@ pipeline {
             iqApplication: 'sandbox-application',
             failBuildOnNetworkError: true,
             iqScanPatterns: [
-              [scanPattern: '**/target/sonatype-clm/module.xml'],
               [scanPattern: '**/target/*.jar'],
               [scanPattern: '**/target/*.zip']
             ],
