@@ -36,7 +36,7 @@ pipeline {
             ],
             callflow: [
               enable: true,
-              logLevel: 'INFO',
+              logLevel: 'DEBUG',
               algorithm: 'RTA_PLUS',
               includes: [
                 '**/target/jenkins-examples-callflow-*-dist.zip'
