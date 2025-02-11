@@ -18,14 +18,7 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        // https://plugins.jenkins.io/config-file-provider/
-        configFileProvider([
-          // https://github.com/jenkinsci/config-file-provider-plugin/blob/master/src/main/java/org/jenkinsci/lib/configprovider/model/ConfigFile.java
-//           configFile(fileId: 'b3db3631-62ee-40e7-8772-83f29ca51e21', variable: 'MAVEN_SETTINGS') // rsc
-          configFile(fileId: '1d7da6d7-c14b-4c6c-81ed-512a6c59ca89', variable: 'MAVEN_SETTINGS') // no/blank settings
-        ]) {
-          sh 'mvn -B -V -e -U -s $MAVEN_SETTINGS clean package -Pdist -Pindex'
-        }
+        sh 'mvn -B -V -e -U clean package -Pdist -Pindex'
       }
     }
 
