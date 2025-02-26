@@ -42,7 +42,7 @@ pipeline {
                 '**/target/jenkins-examples-callflow-*-dist.zip'
               ],
               java: [
-                tool: 'Java 11',
+                tool: 'Java 17',
                 options: [
                   '-Xmx2G'
                 ],
