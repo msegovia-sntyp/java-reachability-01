@@ -34,27 +34,16 @@ pipeline {
               [scanPattern: '**/target/*.jar'],
               [scanPattern: '**/target/*.zip']
             ],
-            callflow: [
-              enable: true,
+            reachability: [
               logLevel: 'DEBUG',
-              algorithm: 'RTA_PLUS',
-              includes: [
-                '**/target/jenkins-examples-callflow-*-dist.zip'
-              ],
-              java: [
-                tool: 'Java 17',
-                options: [
-                  '-Xmx2G'
+              javaAnalysis: [
+                enable: true,
+                entrypointStrategy: 'JAVA_MAIN',
+                includes: [
+                  [pattern: '**/target/jenkins-examples-callflow-*-dist.zip']
                 ],
-                properties: [
-                  foo: 'bar'
-                ]
-              ],
-              entrypointStrategy: [
-                $class: 'NamedStrategy',
-                name: 'JAVA_MAIN',
                 namespaces: [
-                  'org.sonatype.lifecycle.jenkins.examples.callflow'
+                  [namespace: 'org.sonatype.lifecycle.jenkins.examples.callflow']
                 ]
               ]
             ]
