@@ -19,6 +19,7 @@ pipeline {
     stage('Build') {
       steps {
         sh 'mvn -B -V -e -U clean package -Pdist -Pindex'
+        sh '/path/to/java/bin/java -version'
       }
     }
 
