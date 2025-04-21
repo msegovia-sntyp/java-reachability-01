@@ -27,7 +27,7 @@ pipeline {
         script {
           nexusPolicyEvaluation(
             enableDebugLogging: false,
-            iqStage: 'Release',
+            iqStage: 'build',
             iqApplication: 'JavaTestApp1',
             failBuildOnNetworkError: true,
             iqScanPatterns: [
