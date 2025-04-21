@@ -40,7 +40,7 @@ pipeline {
                 namespaces: [
                   [namespace: 'org.sonatype.lifecycle.jenkins.examples.callflow']
                 ]
-              ]
+              )
             ]
           )
 
