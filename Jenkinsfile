@@ -27,20 +27,15 @@ pipeline {
         script {
           nexusPolicyEvaluation(
             enableDebugLogging: false,
-            iqStage: 'build',
-            iqApplication: 'sandbox-application',
+            iqStage: 'Release',
+            iqApplication: 'JavaTestApp1',
             failBuildOnNetworkError: true,
             iqScanPatterns: [
               [scanPattern: '**/target/*.jar'],
               [scanPattern: '**/target/*.zip']
             ],
             reachability: [
-              logLevel: 'DEBUG',
-              javaAnalysis: [
-                enable: true,
-                entrypointStrategy: 'JAVA_MAIN',
-                includes: [
-                  [pattern: '**/target/jenkins-examples-callflow-*-dist.zip']
+                        javaAnalysis: [enable: true]
                 ],
                 namespaces: [
                   [namespace: 'org.sonatype.lifecycle.jenkins.examples.callflow']
