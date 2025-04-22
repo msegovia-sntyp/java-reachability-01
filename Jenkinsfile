@@ -38,8 +38,7 @@ pipeline {
                         javaAnalysis: [enable: true,
                          namespaces: [
                   [namespace: 'org.sonatype.lifecycle.jenkins.examples.callflow']
-                ]              ]
-                ]
+                ]              
               )
 
           archiveArtifacts(
