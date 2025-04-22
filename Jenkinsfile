@@ -40,7 +40,8 @@ pipeline {
                   [namespace: 'org.sonatype.lifecycle.jenkins.examples.callflow']
                 ]              
               ]  
-            )
+            ]
+          )
 
           archiveArtifacts(
             artifacts: '**/bomxray.log',
