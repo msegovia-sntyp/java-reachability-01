@@ -9,6 +9,9 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
+variables:
+  MAVEN_OPTS: "-Xmx3072m"
+
 steps:
 - script: java -version
   displayName: 'Check Java version'
@@ -17,7 +20,6 @@ steps:
   inputs:
     mavenVersionOption: 'Default'
     mavenPomFile: 'pom.xml'
-    options: '-Xmx3072m'
     goals: 'clean package -Pdist -Pindex'
     
 - task: NexusIqPipelineTask@2
