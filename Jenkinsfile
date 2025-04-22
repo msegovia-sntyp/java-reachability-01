@@ -35,10 +35,10 @@ pipeline {
               [scanPattern: '**/target/*.zip']
             ],
             reachability: [
-                        javaAnalysis: [enable: true]
-                ],
-                namespaces: [
+                        javaAnalysis: [enable: true,
+                         namespaces: [
                   [namespace: 'org.sonatype.lifecycle.jenkins.examples.callflow']
+                ]              ]
                 ]
               )
 
