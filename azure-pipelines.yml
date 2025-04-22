@@ -16,7 +16,7 @@ steps:
     jdkArchitectureOption: 'x64'
     jdkSourceOption: 'PreInstalled'
     
-- task: Maven@3
+- task: Maven@4
   inputs:
     mavenVersionOption: 'Default'
     mavenPomFile: 'pom.xml'
