@@ -20,7 +20,7 @@ steps:
   inputs:
     mavenVersionOption: 'Default'
     mavenPomFile: 'pom.xml'
-    options: '-Xmx1024m'
+    options: '-Xmx3072m'
     goals: 'clean package -Pdist -Pindex'
     
 - task: NexusIqPipelineTask@2
