@@ -31,7 +31,7 @@ steps:
     enableCallflow: true
     callflowNamespaces: 'org.sonatype.lifecycle.jenkins.examples.callflow'
 
- - task: PublishBuildArtifacts@1
+- task: PublishBuildArtifacts@1
   inputs:
     artifactName: 'bomxray.log'
     targetPath: '**/bomxray.log'
