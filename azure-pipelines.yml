@@ -10,11 +10,8 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-- task: JavaToolInstaller@0
-  inputs:
-    versionSpec: '17'
-    jdkArchitectureOption: 'x64'
-    jdkSourceOption: 'PreInstalled'
+- script: java -version
+  displayName: 'Check Java version'
     
 - task: Maven@4
   inputs:
