@@ -28,8 +28,8 @@ steps:
     
 - task: NexusIqPipelineTask@2
   inputs:
-    nexusIqService: 'int-test.sonatype.app'
-    applicationId: 'maria-test-app'
-    stage: 'Build'
+    nexusIqService: 'Lifecycle Local'
+    applicationId: 'JavaTestApp1'
+    stage: 'Stage Release'
     reachabilityNamespaces: 'org.sonatype.lifecycle.jenkins.examples.callflow'
 
