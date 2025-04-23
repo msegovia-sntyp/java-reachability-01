@@ -2,42 +2,30 @@
 # Build your Java project and run tests with Apache Maven.
 # Add steps that analyze code, save build artifacts, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/java
-
 trigger:
-- master
+- main  # or 'master' if that’s your default branch
 
 pool:
-  vmImage: ubuntu-latest
-
-variables:
-  MAVEN_OPTS: "-Xmx3072m"
+  vmImage: ubuntu-22.04
 
 steps:
-- task: UseJavaVersion@1
-  inputs:
-    versionSpec: '17'
-    jdkArchitecture: 'x64'
+# Optional: Confirm Java version used by the agent
+- script: |
+    echo "Checking Java version..."
+    java -version
+    mvn -version
+  displayName: 'Check Java & Maven Versions'
 
-steps:
-- script: java -version
-  displayName: 'Check Java version'
-    
+# Build the project using Maven with the specified flags
 - task: Maven@4
   inputs:
     mavenVersionOption: 'Default'
     mavenPomFile: 'pom.xml'
-    goals: 'clean package -Pdist -Pindex'
-    
-- task: NexusIqPipelineTask@2
-  inputs:
-    nexusIqService: 'int-test.sonatype.app'
-    applicationId: 'maria-test-app'
-    stage: 'Build'
-    scanTargets: '**/*.jar, **/*.zip'
-    enableCallflow: true
-    callflowNamespaces: 'org.sonatype.lifecycle.jenkins.examples.callflow'
+    goals: '-B -V -e -U clean package -Pdist -Pindex'
 
+# Optional: Publish bomxray.log if it exists
 - task: PublishBuildArtifacts@1
   inputs:
     artifactName: 'bomxray.log'
     targetPath: '**/bomxray.log'
+
