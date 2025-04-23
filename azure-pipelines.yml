@@ -23,6 +23,15 @@ steps:
     mvn -B -X -e -U clean package -Pdist -Pindex
   displayName: 'Maven Build'
 
+- task: NexusIqPipelineTask@2
+  inputs:
+    nexusIqService: 'int-test.sonatype.app'
+    applicationId: 'maria-test-app'
+    stage: 'Build'
+    scanTargets: '*.jar', '*.zip'
+    enableReachability: true 
+    reachabilityNamespaces: 
+
 - task: PublishBuildArtifacts@1
   inputs:
     artifactName: 'bomxray.log'
