@@ -26,7 +26,7 @@ steps:
     artifactName: 'bomxray.log'
     targetPath: '**/bomxray.log' 
     
-- task: NexusIqPipelineTask@2
+- task: NexusIqPipelineTask@2.4.0
   inputs:
     nexusIqService: 'Lifecycle Local'
     applicationId: 'JavaTestApp1'
