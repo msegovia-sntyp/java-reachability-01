@@ -23,7 +23,7 @@ steps:
     mvn -B -X -e -U clean package -Pdist -Pindex
   displayName: 'Maven Build'
 
-- task: NexusIqPipelineTask@2
+- task: NexusIqPipelineTask@3
   inputs:
     nexusIqService: 'int-test.sonatype.app'
     applicationId: 'maria-test-app'
