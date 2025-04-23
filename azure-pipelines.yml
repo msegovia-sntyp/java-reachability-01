@@ -27,3 +27,12 @@ steps:
   inputs:
     artifactName: 'bomxray.log'
     targetPath: '**/bomxray.log' 
+    
+- task: NexusIqPipelineTask@3
+  inputs:
+    nexusIqService: 'int-test.sonatype.app'
+    applicationId: 'maria-test-app'
+    stage: 'Build'
+    scanTargets: '*.jar', '*.zip'
+    enableReachability: true 
+    reachabilityNamespaces: 'org.sonatype.lifecycle.jenkins.examples.callflow'
