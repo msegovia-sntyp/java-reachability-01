@@ -31,5 +31,6 @@ steps:
     nexusIqService: 'Lifecycle Local'
     applicationId: 'JavaTestApp1'
     stage: 'Stage Release'
+    enableReachability: true 
     reachabilityNamespaces: 'org.sonatype.lifecycle.jenkins.examples.callflow'
 
