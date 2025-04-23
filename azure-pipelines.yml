@@ -3,29 +3,27 @@
 # Add steps that analyze code, save build artifacts, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/java
 trigger:
-- main  # or 'master' if that’s your default branch
+- main
 
 pool:
   vmImage: ubuntu-22.04
 
 steps:
-# Optional: Confirm Java version used by the agent
 - script: |
-    echo "Checking Java version..."
+    echo "Setting JAVA_HOME to Java 17"
+    export JAVA_HOME=/usr/lib/jvm/temurin-17-jdk-amd64
+    export PATH=$JAVA_HOME/bin:$PATH
     java -version
     mvn -version
-  displayName: 'Check Java & Maven Versions'
+  displayName: 'Set Java 17'
 
-# Build the project using Maven with the specified flags
-- task: Maven@4
-  inputs:
-    mavenVersionOption: 'Default'
-    mavenPomFile: 'pom.xml'
-    goals: '-B -V -e -U clean package -Pdist -Pindex'
+- script: |
+    export JAVA_HOME=/usr/lib/jvm/temurin-17-jdk-amd64
+    export PATH=$JAVA_HOME/bin:$PATH
+    mvn -B -X -e -U clean package -Pdist -Pindex
+  displayName: 'Maven Build'
 
-# Optional: Publish bomxray.log if it exists
 - task: PublishBuildArtifacts@1
   inputs:
     artifactName: 'bomxray.log'
-    targetPath: '**/bomxray.log'
-
+    targetPath: '**/bomxray.log' 
