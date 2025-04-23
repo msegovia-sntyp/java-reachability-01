@@ -30,7 +30,7 @@ steps:
     stage: 'Build'
     scanTargets: '*.jar', '*.zip'
     enableReachability: true 
-    reachabilityNamespaces: 
+    reachabilityNamespaces: 'org.sonatype.lifecycle.jenkins.examples.callflow'
 
 - task: PublishBuildArtifacts@1
   inputs:
