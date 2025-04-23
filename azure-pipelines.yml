@@ -9,13 +9,11 @@ pool:
   vmImage: ubuntu-22.04
 
 steps:
-- script: |
-    echo "Setting JAVA_HOME to Java 17"
-    export JAVA_HOME=/usr/lib/jvm/temurin-17-jdk-amd64
-    export PATH=$JAVA_HOME/bin:$PATH
-    java -version
-    mvn -version
-  displayName: 'Set Java 17'
+- task: JavaToolInstaller@0
+  inputs:
+    versionSpec: '17'
+    jdkArchitectureOption: 'x64'
+    jdkSourceOption: 'PreInstalled'
 
 - script: |
     export JAVA_HOME=/usr/lib/jvm/temurin-17-jdk-amd64
