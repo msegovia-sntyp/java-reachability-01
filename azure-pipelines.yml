@@ -15,8 +15,14 @@ steps:
     jdkArchitectureOption: 'x64'
     jdkSourceOption: 'PreInstalled'
 
-- script: mvn -version
-  displayName: 'Check Maven version (debug)'
+- script: |
+    MAVEN_VERSION=3.8.8
+    wget https://downloads.apache.org/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz
+    tar -xzf apache-maven-${MAVEN_VERSION}-bin.tar.gz
+    sudo mv apache-maven-${MAVEN_VERSION} /opt/maven
+    echo "##vso[task.setvariable variable=MAVEN_HOME]/opt/maven"
+    echo "##vso[task.setvariable variable=PATH]$PATH:/opt/maven/bin"
+  displayName: 'Install Maven 3.8.8'
 
 - task: Maven@4
   inputs:
