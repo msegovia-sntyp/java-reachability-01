@@ -24,6 +24,7 @@ steps:
     mavenPomFile: 'pom.xml'
     mavenOptions: '-B -X -e -U -Pdist -Pindex'
     goals: 'clean package'
+    mavenVersionOption: 'Default'
   
 - task: NexusIqPipelineTask@2.4.0
   inputs:
