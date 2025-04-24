@@ -15,26 +15,17 @@ steps:
     jdkArchitectureOption: 'x64'
     jdkSourceOption: 'PreInstalled'
 
-- script: |
-    MAVEN_VERSION=3.8.8
-    wget https://downloads.apache.org/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz
-    tar -xzf apache-maven-${MAVEN_VERSION}-bin.tar.gz
-    sudo mv apache-maven-${MAVEN_VERSION} /opt/maven
-    echo "##vso[task.setvariable variable=MAVEN_HOME]/opt/maven"
-    echo "##vso[task.setvariable variable=PATH]$PATH:/opt/maven/bin"
-  displayName: 'Install Maven 3.8.8'
-
-- script: |
-    /opt/maven/bin/mvn -B -X -e -U -Pdist -Pindex clean package
-  displayName: 'Build with Maven manually'
-  workingDirectory: '$(System.DefaultWorkingDirectory)'
+- task: Maven@4
+  inputs:
+    mavenPomFile: 'pom.xml'
+    goals: 'package -Pdist -Pindex'
   
-- task: NexusIqPipelineTask@2.4.0
+- task: NexusIqPipelineTask@2
   inputs:
     nexusIqService: 'Lifecycle Local'
     applicationId: 'JavaTestApp1'
     stage: 'Build'
-    scanTargets: '**/*.jar'
+    scanTargets: 'target/*.jar, target/*.zip'
     enableReachability: true 
     reachabilityNamespaces: 'org.sonatype.lifecycle.jenkins.examples.callflow'
 
