@@ -23,7 +23,7 @@ steps:
 - task: NexusIqPipelineTask@2
   inputs:
     nexusIqService: 'Lifecycle Local'
-    applicationId: 'JavaTestApp1'
+    applicationId: 'maria-test-app'
     stage: 'Build'
     scanTargets: 'target/*.jar, target/*.zip'
     enableReachability: true 
