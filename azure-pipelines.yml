@@ -20,17 +20,18 @@ steps:
     export PATH=$JAVA_HOME/bin:$PATH
     mvn -B -X -e -U clean package -Pdist -Pindex
   displayName: 'Maven Build'
-
-- task: PublishBuildArtifacts@1
-  inputs:
-    artifactName: 'bomxray.log'
-    targetPath: '**/bomxray.log' 
-    
+  
 - task: NexusIqPipelineTask@2.4.0
   inputs:
     nexusIqService: 'Lifecycle Local'
     applicationId: 'JavaTestApp1'
     stage: 'Build'
+    scanTargets: '**/*.jar, **/*.zip' 
     enableReachability: true 
     reachabilityNamespaces: 'org.sonatype.lifecycle.jenkins.examples.callflow'
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    artifactName: 'bomxray.log'
+    targetPath: '**/bomxray.log' 
 
