@@ -24,12 +24,10 @@ steps:
     echo "##vso[task.setvariable variable=PATH]$PATH:/opt/maven/bin"
   displayName: 'Install Maven 3.8.8'
 
-- task: Maven@4
-  inputs:
-    mavenPomFile: 'pom.xml'
-    mavenOptions: '-B -X -e -U -Pdist -Pindex'
-    goals: 'clean package'
-    mavenVersionOption: 'Default'
+- script: |
+    /opt/maven/bin/mvn -B -X -e -U -Pdist -Pindex clean package
+  displayName: 'Build with Maven manually'
+  workingDirectory: '$(System.DefaultWorkingDirectory)'
   
 - task: NexusIqPipelineTask@2.4.0
   inputs:
