@@ -26,7 +26,7 @@ steps:
     nexusIqService: 'Lifecycle Local'
     applicationId: 'JavaTestApp1'
     stage: 'Build'
-    scanTargets: '**/*.jar, **/*.zip' 
+    scanTargets: '**/*.jar 
     enableReachability: true 
     reachabilityNamespaces: 'org.sonatype.lifecycle.jenkins.examples.callflow'
 
