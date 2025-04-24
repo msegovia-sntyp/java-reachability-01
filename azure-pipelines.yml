@@ -15,11 +15,11 @@ steps:
     jdkArchitectureOption: 'x64'
     jdkSourceOption: 'PreInstalled'
 
-- script: |
-    export JAVA_HOME=/usr/lib/jvm/temurin-17-jdk-amd64
-    export PATH=$JAVA_HOME/bin:$PATH
-    mvn -B -X -e -U clean package -Pdist -Pindex
-  displayName: 'Maven Build'
+- task: Maven@4
+  inputs:
+    mavenPomFile: 'pom.xml'
+    mavenOptions: '-B -X -e -U -Pdist -Pindex'
+    goals: 'clean package'
   
 - task: NexusIqPipelineTask@2.4.0
   inputs:
