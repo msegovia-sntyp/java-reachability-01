@@ -15,6 +15,10 @@ steps:
     jdkArchitectureOption: 'x64'
     jdkSourceOption: 'PreInstalled'
 
+- task: MavenToolInstaller@1
+  inputs:
+    version: '3.8.8'
+
 - task: Maven@4
   inputs:
     mavenPomFile: 'pom.xml'
